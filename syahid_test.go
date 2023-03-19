@@ -9,7 +9,7 @@ import (
 
 var MongoInfo = atdb.DBInfo{
 	DBString: MongoString,
-	DBName:   "backend",
+	DBName:   "penggajian",
 }
 var MongoConn = atdb.MongoConnect(MongoInfo)
 
