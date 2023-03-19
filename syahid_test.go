@@ -1,15 +1,21 @@
 package syahid
 
 import (
+	"fmt"
 	"testing"
 
-	"go.mongodb.org/mongo-driver/bson/primitive"
+	"github.com/aiteung/atdb"
 )
+
+var MongoInfo = atdb.DBInfo{
+	DBString: MongoString,
+	DBName:   "HelpdeskData",
+}
+var MongoConn = atdb.MongoConnect(MongoInfo)
 
 func TestInsertKaryawan(t *testing.T) {
 	dbname := "penggajian"
 	karyawan := Karyawan{
-		ID:      primitive.NewObjectID(),
 		Nama:    "Ujang Saepudin",
 		Status:  "Aktif",
 		Jabatan: "Staff Administrasi",
@@ -24,7 +30,6 @@ func TestInsertKaryawan(t *testing.T) {
 func TestInsertHonor(t *testing.T) {
 	dbname := "penggajian"
 	honor := Honor{
-		ID:      primitive.NewObjectID(),
 		Nama:    "Asep Saepuloh",
 		Status:  "Aktif",
 		Jabatan: "Staff",
@@ -50,7 +55,6 @@ func TestInsertJob(t *testing.T) {
 func TestInsertTeam(t *testing.T) {
 	dbname := "penggajian"
 	team := Team{
-		ID:        primitive.NewObjectID(),
 		Nama:      "Uzumaki Memet",
 		Deskripsi: "anjay mabar",
 	}
@@ -63,7 +67,6 @@ func TestInsertTeam(t *testing.T) {
 func TestInsertAbout(t *testing.T) {
 	dbname := "penggajian"
 	about := About{
-		ID:       primitive.NewObjectID(),
 		Isi_satu: "Ini isi satu",
 		Isi_dua:  "Ini isi dua",
 		Image:    "image.jpg",
@@ -72,4 +75,25 @@ func TestInsertAbout(t *testing.T) {
 	if insertedID == nil {
 		t.Error("Failed to insert about")
 	}
+}
+
+func TestGetDataKaryawan(t *testing.T) {
+	stats := "Aktif"
+	data := GetDataKaryawan(stats)
+	fmt.Println(data)
+}
+func TestGetDataHonor(t *testing.T) {
+	stats := "Aktif"
+	data := GetDataHonor(stats)
+	fmt.Println(data)
+}
+func TestGetDataJob(t *testing.T) {
+	stats := "Staff Administrasi"
+	data := GetDataJob(stats)
+	fmt.Println(data)
+}
+func TestGetDataTeam(t *testing.T) {
+	stats := "Uzumaki Memet"
+	data := GetDataTeam(stats)
+	fmt.Println(data)
 }

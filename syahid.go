@@ -62,48 +62,57 @@ func InsertAbout(db string, about About) (insertedID interface{}) {
 	}
 	return insertResult.InsertedID
 }
-
-func GetKaryawan(db string, id interface{}) (*Karyawan, error) {
-	var result Karyawan
-	err := MongoConnect(db).Collection("karyawan").FindOne(context.TODO(), bson.M{"nama": id}).Decode(&result)
+func GetDataKaryawan(stats string) (data []Karyawan) {
+	user := MongoConnect("penggajian").Collection("karyawan")
+	filter := bson.M{"status": stats}
+	cursor, err := user.Find(context.TODO(), filter)
 	if err != nil {
-		return nil, err
+		fmt.Println("GetDataKaryawan :", err)
 	}
-	return &result, nil
+	err = cursor.All(context.TODO(), &data)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return
 }
 
-func GetHonor(db string, id interface{}) (*Honor, error) {
-	var result Honor
-	err := MongoConnect(db).Collection("honor").FindOne(context.TODO(), bson.M{"nama": id}).Decode(&result)
+func GetDataHonor(stats string) (data []Honor) {
+	user := MongoConnect("penggajian").Collection("honor")
+	filter := bson.M{"status": stats}
+	cursor, err := user.Find(context.TODO(), filter)
 	if err != nil {
-		return nil, err
+		fmt.Println("GetDataHonor :", err)
 	}
-	return &result, nil
+	err = cursor.All(context.TODO(), &data)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return
 }
 
-func GetJob(db string, id interface{}) (*Job, error) {
-	var result Job
-	err := MongoConnect(db).Collection("job").FindOne(context.TODO(), bson.M{"namajob": id}).Decode(&result)
+func GetDataJob(stats string) (data []Job) {
+	user := MongoConnect("penggajian").Collection("job")
+	filter := bson.M{"namajob": stats}
+	cursor, err := user.Find(context.TODO(), filter)
 	if err != nil {
-		return nil, err
+		fmt.Println("GetDataJob :", err)
 	}
-	return &result, nil
+	err = cursor.All(context.TODO(), &data)
+	if err != nil {
+		fmt.Println(err)
+	}
+	return
 }
-
-func GetTeam(db string, id interface{}) (*Team, error) {
-	var result Team
-	err := MongoConnect(db).Collection("team").FindOne(context.TODO(), bson.M{"nama": id}).Decode(&result)
+func GetDataTeam(stats string) (data []Team) {
+	user := MongoConnect("penggajian").Collection("team")
+	filter := bson.M{"nama": stats}
+	cursor, err := user.Find(context.TODO(), filter)
 	if err != nil {
-		return nil, err
+		fmt.Println("GetDataTeam :", err)
 	}
-	return &result, nil
-}
-
-func GetAbout(db string, id interface{}) (*About, error) {
-	var result About
-	err := MongoConnect(db).Collection("about").FindOne(context.TODO(), bson.M{"_id": id}).Decode(&result)
+	err = cursor.All(context.TODO(), &data)
 	if err != nil {
-		return nil, err
+		fmt.Println(err)
 	}
-	return &result, nil
+	return
 }
