@@ -16,7 +16,7 @@ var MongoConn = atdb.MongoConnect(MongoInfo)
 func TestInsertKaryawan(t *testing.T) {
 	dbname := "penggajian"
 	karyawan := Karyawan{
-		Nama:    "Ujang Saepudin",
+		Nama:    "Saepudin Abidin",
 		Status:  "Aktif",
 		Jabatan: "Staff Administrasi",
 		Gaji:    "RP 4.000.000",
@@ -30,7 +30,7 @@ func TestInsertKaryawan(t *testing.T) {
 func TestInsertHonor(t *testing.T) {
 	dbname := "penggajian"
 	honor := Honor{
-		Nama:    "Asep Saepuloh",
+		Nama:    "Saepul Anwar",
 		Status:  "Aktif",
 		Jabatan: "Staff",
 		Gaji:    "RP 1.500.000",
@@ -44,7 +44,7 @@ func TestInsertHonor(t *testing.T) {
 func TestInsertJob(t *testing.T) {
 	dbname := "penggajian"
 	job := Job{
-		Namajob: "Staff Administrasi",
+		Namajob: "Staff IT",
 	}
 	insertedID := InsertJob(dbname, job)
 	if insertedID == nil {
@@ -55,8 +55,8 @@ func TestInsertJob(t *testing.T) {
 func TestInsertTeam(t *testing.T) {
 	dbname := "penggajian"
 	team := Team{
-		Nama:      "Uzumaki Memet",
-		Deskripsi: "anjay mabar",
+		Nama:      "Uzumaki Asep",
+		Deskripsi: "anjay asep",
 	}
 	insertedID := InsertTeam(dbname, team)
 	if insertedID == nil {
