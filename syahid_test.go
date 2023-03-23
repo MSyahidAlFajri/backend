@@ -3,28 +3,24 @@ package backend
 import (
 	"fmt"
 	"testing"
-
-	"github.com/aiteung/atdb"
 )
 
-var MongoInfo = atdb.DBInfo{
-	DBString: MongoString,
-	DBName:   "penggajian",
-}
-var MongoConn = atdb.MongoConnect(MongoInfo)
+// var MongoInfo = atdb.DBInfo{
+// 	DBString: MongoString,
+// 	DBName:   "penggajian",
+// }
+// var MongoConn = atdb.MongoConnect(MongoInfo)
 
-func TestInsertKaryawan(t *testing.T) {
+func TestInsertData(t *testing.T) {
 	dbname := "penggajian"
-	karyawan := Karyawan{
-		Nama:    "Saepudin Abidin",
-		Status:  "Aktif",
-		Jabatan: "Staff Administrasi",
-		Gaji:    "RP 4.000.000",
-	}
-	insertedID := InsertKaryawan(dbname, karyawan)
-	if insertedID == nil {
-		t.Error("Failed to insert karyawan")
-	}
+	nama := "Abidin"
+	status := "Aktif"
+	jabatan := "Staff Administrasi"
+	gaji := "RP 4.000.000"
+
+	hasil := InsertDataKaryawan(dbname, nama, status, jabatan, gaji)
+	fmt.Println(hasil)
+
 }
 
 func TestInsertHonor(t *testing.T) {

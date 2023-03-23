@@ -27,6 +27,16 @@ func InsertOneDoc(db string, collection string, doc interface{}) (insertedID int
 	}
 	return insertResult.InsertedID
 }
+
+func InsertDataKaryawan(db, nama string, status string, jabatan string, gaji string) (InsertedID interface{}) {
+	var datakaryawan Karyawan
+	datakaryawan.Nama = nama
+	datakaryawan.Status = status
+	datakaryawan.Jabatan = jabatan
+	datakaryawan.Gaji = gaji
+
+	return InsertOneDoc(db, "karyawan", datakaryawan)
+}
 func InsertKaryawan(db string, karyawan Karyawan) (insertedID interface{}) {
 	insertResult, err := MongoConnect(db).Collection("karyawan").InsertOne(context.TODO(), karyawan)
 	if err != nil {
